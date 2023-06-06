@@ -13,7 +13,7 @@ from rl.memory import SequentialMemory, EpisodeParameterMemory
 from tqdm import tqdm
 from gym_ids.envs.idsEnv  import samples_test,samples_train
 from gym_ids.envs.features import Features
-#from gym_ids.envs.ids import Darknet_Check
+from gym_ids.envs.ids import Darknet_Check
 from gym_ids.envs.flow_manipulator import  flow_Manipulator
 
 ENV_NAME = 'IDS-v0'
