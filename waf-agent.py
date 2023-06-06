@@ -13,7 +13,7 @@ from rl.memory import SequentialMemory, EpisodeParameterMemory
 from tqdm import tqdm
 from gym_ids.envs.idsEnv  import samples_test,samples_train
 from gym_ids.envs.features import Features
-from gym_ids.envs.ids import Darknet_Check
+#from gym_ids.envs.ids import Darknet_Check
 from gym_ids.envs.flow_manipulator import  flow_Manipulator
 
 ENV_NAME = 'IDS-v0'
@@ -78,7 +78,7 @@ def train_dqn_model(layers,rounds):
     print  ("##Test##")
 
     features_extra = Features()
-    ids_checker = Darknet_Check()
+    #ids_checker = Darknet_Check()
 
     flow_manipulator = flow_Manipulator()
 
@@ -89,8 +89,8 @@ def train_dqn_model(layers,rounds):
     success_sample,evaded_samples,origin_samples = [],[],[]
     for sample in tqdm(samples_test):
         success_action = []
-        if not ids_checker.check_darknet(sample):       #encounter misclassification
-            continue
+#         if not ids_checker.check_darknet(sample):       #encounter misclassification
+#             continue
         total+=1
 
         ########## Copy file to target directory #########
@@ -103,12 +103,12 @@ def train_dqn_model(layers,rounds):
 
         for _ in range(nb_max_episode_steps_test):
             try:
-                if not ids_checker.check_darknet(sample) :
-                    success+=1
-                    success_sample += success_action       #success, save success_action
-                    evaded_samples.append(str(features_extra.feature_extraction(sample)).strip("[]"))        #evaded_samples, save feature vectors
-                    origin_samples.append(plain_sample)         # save original feature vectors of evaded files
-                    break
+#                 if not ids_checker.check_darknet(sample) :
+#                     success+=1
+#                     success_sample += success_action       #success, save success_action
+#                     evaded_samples.append(str(features_extra.feature_extraction(sample)).strip("[]"))        #evaded_samples, save feature vectors
+#                     origin_samples.append(plain_sample)         # save original feature vectors of evaded files
+#                     break
                 f = features_extra.feature_extraction(sample).reshape(shp)
                 act_values = model.predict(f)
 
