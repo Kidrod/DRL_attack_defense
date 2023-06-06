@@ -94,9 +94,9 @@ def train_dqn_model(layers,rounds):
         total+=1
 
         ########## Copy file to target directory #########
-        name_pre = sample[sample.rfind('\\') + 1:]
-        shutil.copy(sample,r"D:\Download\DRL_attack_defense\malicious_add_more_experiment\malicious_test_copy")
-        sample = r"D:\Download\DRL_attack_defense\malicious_add_more_experiment\malicious_test_copy\{}".format(name_pre)
+        name_pre = sample[sample.rfind('/') + 1:]
+        shutil.copy(sample,r"/content/DRL_attack_defense/malicious_add_more_experiment/malicious_test_copy")
+        sample = r"/content/DRL_attack_defense/malicious_add_more_experiment/malicious_test_copy/{}".format(name_pre)
 
         ########## Extract the original feature vector first time#########
         plain_sample =  str(features_extra.feature_extraction(sample)).strip("[]")
