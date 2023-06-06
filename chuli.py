@@ -18,13 +18,13 @@ def get_filelist(dir, Filelist):
 if __name__ == '__main__':
     # df = pd.read_csv(r"D:\Download\DRL_attack_defense\no_text.csv",index_col=None)
 
-    list = get_filelist(r'D:\Download\DRL_attack_defense\malicious_for_evade', [])
+    list = get_filelist(r'/content/sample_data/Malicious/for_evade', [])
     i = 0
     for e in list:
         if i < 2826:
-            shutil.copy(e, r"D:\Download\DRL_attack_defense\malicious_train")
+            shutil.copy(e, r"/content/sample_data/Malicious/malicious_train")
         else:
-            shutil.copy(e, r"D:\Download\DRL_attack_defense\malicious_test")
+            shutil.copy(e, r"/content/sample_data/Malicious/malicious_test")
         i += 1
 
         ##############compatible with PdfReader, then move to malicious_final
