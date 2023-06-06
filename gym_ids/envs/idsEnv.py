@@ -27,7 +27,7 @@ class IDSEnv_v0(gym.Env):
         self.turns = 0
 
         self.features_extra = Features()
-        self.darknet_checker = Darknet_Check()
+        #self.darknet_checker = Darknet_Check()
 
         self.flow_manipulator = flow_Manipulator()
         self.reset()
