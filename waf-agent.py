@@ -66,12 +66,12 @@ def train_dqn_model(layers,rounds):
     agent.compile(RMSprop(lr=1e-3), metrics=['mae'])
 
     output = sys.stdout
-    outputfile = open(r"tmp_add_more_experiment/loss_attack.txt", 'w')
+    outputfile = open(r"/content/DRL_attack_defense/tmp_add_more_experiment/loss_attack.txt", 'w')
     sys.stdout = outputfile
 
     history = agent.fit(env, nb_steps=rounds, nb_max_episode_steps=nb_max_episode_steps_train,visualize=False, verbose=2)
 
-    model.save(r"tmp_add_more_experiment/agent.pkl")
+    model.save(r"/content/DRL_attack_defense/tmp_add_more_experiment/agent.pkl")
 
     # model = load_model(r"tmp/agent.pkl")
 
@@ -136,16 +136,16 @@ def train_dqn_model(layers,rounds):
     if len(evaded_samples) != 0:
         dict_data = {'features': evaded_samples,'type': [2] * len(evaded_samples)}  # Evaded, label is 2
         dict_data = pd.DataFrame(dict_data, columns=["features", "type"])
-        dict_data.to_csv(r"data_for_defense_add_more_experiment/evaded_samples_with_origin/evaded.csv", index=False)
+        dict_data.to_csv(r"/content/DRL_attack_defense/data_for_defense_add_more_experiment/evaded_samples_with_origin/evaded.csv", index=False)
 
         dict_data = {'features': origin_samples,'type': [3] * len(origin_samples)}  # Original, label is 3
         dict_data = pd.DataFrame(dict_data, columns=["features", "type"])
-        dict_data.to_csv(r"data_for_defense_add_more_experiment/evaded_samples_with_origin/origin.csv", index=False)
+        dict_data.to_csv(r"/content/DRL_attack_defense/data_for_defense_add_more_experiment/evaded_samples_with_origin/origin.csv", index=False)
 
     dict_data = {'rotate': [data_count[0] / sum_actions],'add_annotation':[data_count[1] / sum_actions],'addblankpage':[data_count[2] / sum_actions],
         "addwatermark":[data_count[3] / sum_actions],"concatebenign":[data_count[4] / sum_actions],'success_rate':[success / total],'average_number_of_attempts':[len(success_sample) / success]}
     dict_data = pd.DataFrame(dict_data,columns=["rotate","add_annotation","addblankpage","addwatermark","concatebenign","success_rate","average_number_of_attempts"])
-    dict_data.to_csv(r"tmp_add_more_experiment/action_result/result.csv", index=False)
+    dict_data.to_csv(r"/content/DRL_attack_defense/tmp_add_more_experiment/action_result/result.csv", index=False)
 
     outputfile.close()
     return agent, model
