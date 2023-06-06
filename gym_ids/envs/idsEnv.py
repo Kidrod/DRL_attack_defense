@@ -9,9 +9,9 @@ from gym_ids.envs.flow_manipulator import flow_Manipulator
 from chuli import get_filelist
 import shutil
 
-samples_train = get_filelist(r'D:\Download\DRL_attack_defense\malicious_train', [])
+samples_train = get_filelist(r'/content/sample_data/Malicious/malicious_train', [])
 samples_train_len = len(samples_train)
-samples_test = get_filelist(r'D:\Download\DRL_attack_defense\malicious_test', [])
+samples_test = get_filelist(r'/content/sample_data/Malicious/malicious_test', [])
 
 ACTION_LOOKUP = {i: act for i, act in enumerate(flow_Manipulator.ACTION_TABLE.keys())}
 
@@ -69,9 +69,9 @@ class IDSEnv_v0(gym.Env):
         while True:
             self.current_sample = samples_train[np.random.randint(0,samples_train_len)]
             if self.darknet_checker.check_darknet(self.current_sample):
-                name_pre = self.current_sample[self.current_sample.rfind('\\') + 1:]
-                shutil.copy(self.current_sample,r"D:\Download\DRL_attack_defense\malicious_add_more_experiment_no\malicious_train_copy")
-                self.current_sample = r"D:\Download\DRL_attack_defense\malicious_add_more_experiment_no\malicious_train_copy\{}".format(name_pre)
+                name_pre = self.current_sample[self.current_sample.rfind('/') + 1:]
+                shutil.copy(self.current_sample,r"/content/DRL_attack_defense/malicious_add_more_experiment_no/malicious_train_copy")
+                self.current_sample = r"/content/DRL_attack_defense/malicious_add_more_experiment_no/malicious_train_copy/{}".format(name_pre)
                 break
         self.observation_space = self.features_extra.feature_extraction(self.current_sample)
         return self.observation_space
