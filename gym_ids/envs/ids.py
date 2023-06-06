@@ -9,7 +9,7 @@ class Darknet_Check(object):
         self.feature = Features()
 
     def check_darknet(self,sample,model_name = "RF"):
-        detector = joblib.load(r'detector/{}.pkl'.format(model_name))
+        detector = joblib.load(r'/content/DRL_attack_defense/detector/{}.pkl'.format(model_name))
         isxss = detector.predict([self.feature.feature_extraction(sample)])
         return True if isxss[0] == 1 else False
 
