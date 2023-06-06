@@ -289,7 +289,7 @@ class Features(object):
 
     def feature_extraction(self,filepath):
         features = []
-        command_to_execute = 'python D:\Download\DRL_attack_defense\gym_ids\envs\pdfid.py ' + filepath
+        command_to_execute = 'python /content/DRL_attack_defense/gym_ids/envs/pdfid.py ' + filepath
         stdout = Popen(command_to_execute, shell=True, stdout=PIPE).stdout
         output = stdout.readlines()
         if len(output) == 24:
@@ -303,6 +303,6 @@ class Features(object):
 
 if __name__ == '__main__':
     f=Features()
-    k = r"D:\Download\introductiontost00bloo.pdf"
+    k = r"/content/sample_data/Malicious/malicious_train/033.pdf"
     a=f.feature_extraction(k)
     print(a)
