@@ -15,5 +15,5 @@ class Darknet_Check(object):
 
 if __name__ == '__main__':
     detector=Darknet_Check()
-    k = r"D:\Download\DRL_attack_defense\malicious_train\3477e9667a10efcca41d626b88ec15e3fcda28d8.pdf"
+    k = r"/content/sample_data/Malicious/malicious_train/02ea588af725212ce1f4e8590cd9ce0093fae9ff527446ae80a8f2528c0a4b17"
     print(detector.check_darknet(k))
