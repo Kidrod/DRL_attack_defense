@@ -70,7 +70,7 @@ class flow_Manipulator(object):
 
     def addblankpage(self,sample):
         try:
-            self.merge(sample, [sample, r"D:\Download\DRL_attack_defense\blank.pdf"])
+            self.merge(sample, [sample, r"/content/DRL_attack_defense/blank.pdf"])
         except AttributeError:
             pass
         except pdfrw.errors.PdfParseError:
@@ -84,7 +84,7 @@ class flow_Manipulator(object):
         return sample
 
     def addwatermark(self,sample):
-        wmark = PageMerge().add(PdfReader(r"D:\Download\DRL_attack_defense\blank_with_water.pdf").pages[0])[0]
+        wmark = PageMerge().add(PdfReader(r"/content/DRL_attack_defense/blank_with_water.pdf").pages[0])[0]
         try:
             trailer = PdfReader(sample)
             for page in trailer.pages:
@@ -107,7 +107,7 @@ class flow_Manipulator(object):
     def concatebenign(self,sample):
         writer = PdfWriter()
         try:
-            for inpfn in [sample, r"D:\Download\DRL_attack_defense\concatebenign.pdf"]:
+            for inpfn in [sample, r"/content/DRL_attack_defense/concatebenign.pdf"]:
                 writer.addpages(PdfReader(inpfn).pages)
             writer.write(sample)
         except AttributeError:
@@ -128,6 +128,6 @@ class flow_Manipulator(object):
 
 if __name__ == '__main__':
 
-    k = r"D:\Download\pdf_data\123.pdf"
+    k = r"/content/sample_data/Malicious/malicious_train/032.pdf"
     a = flow_Manipulator().modify(k,"concatebenign")
 
