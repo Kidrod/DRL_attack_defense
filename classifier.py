@@ -33,7 +33,7 @@ y = df_label.iloc[:, 0]
 
 
 ############Load feature vectors of adversarial samples##############
-df_adversarial = pd.read_csv(r"data_for_defense/evaded_samples_with_origin/evaded.csv", index_col=None)
+df_adversarial = pd.read_csv(r"/content/DRL_attack_defense/data.csv", index_col=None)
 X_adversarial = df_adversarial["features"].apply(lambda x:re.findall(r"\d+\.?\d*",x)).values.tolist()
 X_adversarial = [list(map(lambda x: int(x), i))  for i in X_adversarial][:500]
 
@@ -48,19 +48,19 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
 
 ########################################
-# print("---Random Forest---")
-# clf = RandomForestClassifier()
-# clf.fit(X_train, y_train)
-# y_pred = clf.predict(X_test)
-# acs = accuracy_score(y_test, y_pred)
-# cm = confusion_matrix(y_test, y_pred)
-# print("Accuracy:", acs)
-# print("\nConfusion Matrix:\n", cm)
-# joblib.dump(clf, 'detector/{}.pkl'.format("RF"))
-#
-# report = classification_report(y_test, y_pred, output_dict=True, digits=5)
-# df_result = pd.DataFrame(report).transpose()
-# df_result.to_csv("detector/RF_result.csv", index=True)
+print("---Random Forest---")
+clf = RandomForestClassifier()
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+acs = accuracy_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+print("Accuracy:", acs)
+print("\nConfusion Matrix:\n", cm)
+joblib.dump(clf, '/content/DRL_attack_defense/detector/{}.pkl'.format("RF"))
+
+report = classification_report(y_test, y_pred, output_dict=True, digits=5)
+df_result = pd.DataFrame(report).transpose()
+df_result.to_csv("/content/DRL_attack_defense/detector/RF_result.csv", index=True)
 #
 # # clf = joblib.load("detector/RF.pkl")
 #
@@ -71,15 +71,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
 
 ########################################
-print("---SVM---")
-model = svm.SVC()
-model.fit(X_train,y_train)
-y_pred = model.predict(X_test)
-acs = accuracy_score(y_test, y_pred)
-cm = confusion_matrix(y_test, y_pred)
-print("Accuracy:", acs)
-print("\nConfusion Matrix:\n", cm)
-joblib.dump(model, 'detector/{}.pkl'.format("SVM"))
-report = classification_report(y_test, y_pred, output_dict=True, digits=5)
-df_result = pd.DataFrame(report).transpose()
-df_result.to_csv("detector/SVM_result.csv", index=True)
+# print("---SVM---")
+# model = svm.SVC()
+# model.fit(X_train,y_train)
+# y_pred = model.predict(X_test)
+# acs = accuracy_score(y_test, y_pred)
+# cm = confusion_matrix(y_test, y_pred)
+# print("Accuracy:", acs)
+# print("\nConfusion Matrix:\n", cm)
+# joblib.dump(model, 'detector/{}.pkl'.format("SVM"))
+# report = classification_report(y_test, y_pred, output_dict=True, digits=5)
+# df_result = pd.DataFrame(report).transpose()
+# df_result.to_csv("detector/SVM_result.csv", index=True)
