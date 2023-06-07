@@ -26,8 +26,8 @@ import sklearn.svm as svm
 # df_label.to_csv("label.csv",index=False)
 
 
-df_data = read_csv('data.csv',index_col=None)
-df_label = read_csv('label.csv',index_col=None)
+df_data = read_csv('/content/DRL_attack_defense/data.csv',index_col=None)
+df_label = read_csv('/content/DRL_attack_defense/label.csv',index_col=None)
 X = df_data.iloc[:, 0: 21]
 y = df_label.iloc[:, 0]
 
